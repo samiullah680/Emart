@@ -12,5 +12,5 @@ Router.route("/createProduct").post(Auth, ProductControllerCreateProduct);
 Router.route("/editProduct").post(Auth, ProductControllerEditProduct);
 Router.route("/deleteProduct").post(Auth, ProductControllerDeleteProduct);
 Router.route("/getSingleProduct").post(Auth, ProductControllerGetSingleProduct);
-Router.route("/getProduct").=post(Auth, ProductControllerGetProduct);
+Router.route("/getProduct").post(Auth, ProductControllerGetProduct);
 module.exports = Router;
