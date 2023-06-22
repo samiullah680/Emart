@@ -73,16 +73,16 @@ const ProductControllerDeleteProduct = async (req, res) => {
 };
 
 const ProductControllerGetProduct = async (req, res) => {
-  let count = req.query.count;
-  let activePage = req.query.activePage - 1;
+  let count = req.body.count;
+  let activePage = req.body.activePage - 1;
   try {
     const filter = {
       user_id: req.user.id,
-      title: req.query.title,
-      category: req.query.category,
-      price: req.query.price,
-      brand: req.query.brand,
-      quantity: req.query.quantity,
+      title: req.body.title,
+      category: req.body.category,
+      price: req.body.price,
+      brand: req.body.brand,
+      quantity: req.body.quantity,
     };
     const filterQuery = Object.entries(filter).reduce((acc, [key, value]) => {
       if (value !== undefined) {
@@ -91,10 +91,10 @@ const ProductControllerGetProduct = async (req, res) => {
       return acc;
     }, {});
 
-    if (req.query.search != undefined && req.query.search != "") {
+    if (req.query.body != undefined && req.body.search != "") {
       filterQuery.$or = [
-        { title: req.query.search },
-        { brand: req.query.search },
+        { title: req.body.search },
+        { brand: req.body.search },
       ];
     }
     let TotleCount = await ProdctModel.count(filterQuery);
